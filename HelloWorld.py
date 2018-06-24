@@ -58,27 +58,25 @@ while answer != 'q':
 			file_list = os.listdir()
 			i = 1
 			while i < len(file_list):
-				newfile = file_list[i] + ".dupl"
-				shutil.copy(file_list[i], newfile)
+				if os.path.isfile(file_list[i]):
+					newfile = file_list[i] + ".dupl"
+					shutil.copy(file_list[i], newfile)
 				i += 1
 		
 		elif do == 5:
 			file_dupl = input("Какой файл дублировать? ")
-			file_list = os.listdir()
-			i = 1
-			while i < len(file_list):
-				if file_dupl == file_list[i]:
-					newfile = file_list[i] + ".dupl"
-					shutil.copy(file_list[i], newfile)
-				i += 1
+			if os.path.isfile(file_dupl):
+				newfile = file_dupl + ".dupl"
+				shutil.copy(file_dupl, newfile)
 
 		elif do == 6:
 			direct = input("Укажите директорию ")
 			file_list = os.listdir(direct)
 			i = 1
 			while i < len(file_list): 
-				if  file_list[i].endswith(".dupl"):
-					os.remove(file_list[i])
+				fullname = os.path.join(direct, file_list[i])
+				if  fullname.endswith(".dupl"):
+					os.remove(fullname)
 				i += 1
 		else:
 			pass
