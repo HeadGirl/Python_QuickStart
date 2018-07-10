@@ -4,6 +4,24 @@ import psutil      #сторонний модуль
 import sys
 import shutil
 
+def duplicate_file(filename):
+	if os.path.isfile(filename):
+				newfile = filename + ".dupl"
+				shutil.copy(filename, newfile)
+				if os.path.exists(newfile):
+					print("Файл ", newfile, " был успешно создан")
+					return True
+				else:
+					print("Возникли проблемы при копировании")
+					return False
+
+def sys_info():
+	print("Текущая рабочая директория: ", os.getcwd())
+	print( "Платформа (ОС): " sys.platform)
+	print( "Кодировка файловой системы: " sys.getfilesystemencoding())
+	print( "Логин пользователя: " os.getlogin())
+	print( "Количество CPU:" psutil.cpu_count())
+
 print("Мастер Питона :-)")
 print("привет, программист!")
 name = input("Ваше имя: ")
@@ -30,25 +48,7 @@ while answer != 'q':
 			print(os.listdir())
 		
 		elif do == 2:
-			print("[1] - текущая рабочая директория")
-			print("[2] - платформа (ОС)")
-			print("[3] - кодировка файловой системы")
-			print("[4] - логин пользователя")
-			print("[5] - количество CPU")
-			do_two = int(input("Укажите номер действия: "))
-
-			if do_two == 1:
-				print(os.getcwd())
-			elif do_two == 2:
-				print(sys.platform)
-			elif do_two == 3:
-				print(sys.getfilesystemencoding())
-			elif do_two == 4:
-				print(os.getlogin())
-			elif do_two == 5:
-				print(psutil.cpu_count())
-			else:
-				pass 
+			sys_info()
 
 		elif do == 3:
 			print(psutil.pids())
@@ -58,26 +58,24 @@ while answer != 'q':
 			file_list = os.listdir()
 			i = 1
 			while i < len(file_list):
-				if os.path.isfile(file_list[i]):
-					newfile = file_list[i] + ".dupl"
-					shutil.copy(file_list[i], newfile)
+				duplicate_file(file_list[i])
 				i += 1
 		
 		elif do == 5:
 			file_dupl = input("Какой файл дублировать? ")
-			if os.path.isfile(file_dupl):
-				newfile = file_dupl + ".dupl"
-				shutil.copy(file_dupl, newfile)
+			duplicate_file(file_dupl)
 
 		elif do == 6:
 			direct = input("Укажите директорию ")
 			file_list = os.listdir(direct)
-			i = 1
-			while i < len(file_list): 
-				fullname = os.path.join(direct, file_list[i])
+			# i = 1
+			# while i < len(file_list): 
+			# Тоже самое, но через for
+			for f in file_list
+				fullname = os.path.join(direct, f)
 				if  fullname.endswith(".dupl"):
 					os.remove(fullname)
-				i += 1
+				#i += 1
 		else:
 			pass
 
