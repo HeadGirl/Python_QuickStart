@@ -22,6 +22,15 @@ def sys_info():
 	print( "Логин пользователя: " os.getlogin())
 	print( "Количество CPU:" psutil.cpu_count())
 
+def delete(file_list):
+	for f in file_list
+		n = 0
+		fullname = os.path.join(direct, f)
+		if  fullname.endswith(".dupl"):
+			os.remove(fullname)
+			n += 1
+		return n
+
 print("Мастер Питона :-)")
 print("привет, программист!")
 name = input("Ваше имя: ")
@@ -68,14 +77,7 @@ while answer != 'q':
 		elif do == 6:
 			direct = input("Укажите директорию ")
 			file_list = os.listdir(direct)
-			# i = 1
-			# while i < len(file_list): 
-			# Тоже самое, но через for
-			for f in file_list
-				fullname = os.path.join(direct, f)
-				if  fullname.endswith(".dupl"):
-					os.remove(fullname)
-				#i += 1
+		
 		else:
 			pass
 
