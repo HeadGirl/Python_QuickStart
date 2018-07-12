@@ -17,19 +17,19 @@ def duplicate_file(filename):
 
 def sys_info():
 	print("Текущая рабочая директория: ", os.getcwd())
-	print( "Платформа (ОС): " sys.platform)
-	print( "Кодировка файловой системы: " sys.getfilesystemencoding())
-	print( "Логин пользователя: " os.getlogin())
-	print( "Количество CPU:" psutil.cpu_count())
+	print( "Платформа (ОС): ", sys.platform)
+	print( "Кодировка файловой системы: ", sys.getfilesystemencoding())
+	print( "Логин пользователя: ", os.getlogin())
+	print( "Количество CPU:", psutil.cpu_count())
 
-def delete(file_list):
-	for f in file_list
-		n = 0
+def delete(file_list, direct):
+	n = 0
+	for f in file_list:
 		fullname = os.path.join(direct, f)
 		if  fullname.endswith(".dupl"):
 			os.remove(fullname)
 			n += 1
-		return n
+	return n
 
 print("Мастер Питона :-)")
 print("привет, программист!")
@@ -77,7 +77,8 @@ while answer != 'q':
 		elif do == 6:
 			direct = input("Укажите директорию ")
 			file_list = os.listdir(direct)
-		
+			a = str(delete(file_list, direct))
+			print("Удалено " + a + " файлов")
 		else:
 			pass
 
