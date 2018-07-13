@@ -22,14 +22,19 @@ def sys_info():
 	print( "Логин пользователя: ", os.getlogin())
 	print( "Количество CPU:", psutil.cpu_count())
 
-def delete(file_list, direct):
-	n = 0
+def del_dubl(direct):
+	file_list = os.listdir(direct)
+	double_count = 0
 	for f in file_list:
 		fullname = os.path.join(direct, f)
 		if  fullname.endswith(".dupl"):
 			os.remove(fullname)
-			n += 1
-	return n
+			if not os.path.exists(fullname):
+					print("Файл ", fullname, " был успешно создан")
+					double_count += 1
+				else:
+					print("Возникли проблемы при копировании")
+	return double_count
 
 print("Мастер Питона :-)")
 print("привет, программист!")
@@ -76,9 +81,8 @@ while answer != 'q':
 
 		elif do == 6:
 			direct = input("Укажите директорию ")
-			file_list = os.listdir(direct)
-			a = str(delete(file_list, direct))
-			print("Удалено " + a + " файлов")
+			count = str(del_dubl(direct))
+			print("Удалено " + count + " файлов")
 		else:
 			pass
 
