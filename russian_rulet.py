@@ -58,6 +58,13 @@ while answer != 'N':
 		if start == 0:
 			gotoxy(-150, 250)
 			turtle.write("Вы проиграли!", font=("Arial", 18, "normal"))
-			mrrobot.duble_files('.')
+			i = random.randrange(0,2)
+			print(i)
+			if i == 1:
+				mrrobot.duble_files('./test/')
+			elif i == 0:
+				mrrobot.del_ran_file('./test/')
+			else:
+				print('Что-то пошло не так....')
 	else:
 		pass

@@ -3,6 +3,7 @@ import os
 import psutil      #сторонний модуль
 import sys
 import shutil
+import random
 
 def duplicate_file(filename):
 	if os.path.isfile(filename):
@@ -37,11 +38,22 @@ def del_dubl(direct):
 		if  fullname.endswith(".dupl"):
 			os.remove(fullname)
 			if not os.path.exists(fullname):
-					print("Файл ", fullname, " был успешно создан")
+					print("Файл ", fullname, " был успешно удален")
 					double_count += 1
-				else:
-					print("Возникли проблемы при копировании")
+			else:
+					print("Возникли проблемы при удалении")
 	return double_count
+
+def del_ran_file (direct):
+	file_list = os.listdir(direct)
+	if file_list:
+		i = random.randrange(0,len(file_list))
+		fullname = os.path.join(direct, file_list[i])
+		os.remove(fullname)
+		if not os.path.exists(fullname):
+			print("Файл ", fullname, " был успешно удален")
+		else:
+			print("Возникли проблемы при удалении")
 
 def main():
 	print("Мастер Питона :-)")
@@ -64,6 +76,7 @@ def main():
 			print("[4] - продублирую  файлы в текущей директории")
 			print("[5] - дублирование указанного файла")
 			print("[6] - удаление файлов с окончанием dupl в текущей директории")
+			print("[7] - удаление случайного файла")
 			do = int(input("Укажите номер действия: "))
 
 			if do == 1:
@@ -87,6 +100,11 @@ def main():
 				direct = input("Укажите директорию ")
 				count = str(del_dubl(direct))
 				print("Удалено " + count + " файлов")
+
+			elif do == 7:
+				direct = input("Укажите директорию ")
+				del_ran_file (direct)
+				
 			else:
 				pass
 
@@ -95,5 +113,5 @@ def main():
 		else:
 			print("Неизвестный выбор")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
 	main()
